@@ -1,4 +1,3 @@
-import { stringify } from "querystring";
 import { useState } from "react";
 import "./App.css";
 
@@ -18,6 +17,19 @@ const Section = ({
         defaultValue={value}
         onChange={(event) => onChange(event.target.value)}
       />
+    </div>
+  );
+};
+
+const NewParam = ({ addNew }: { addNew: (n: string) => void }) => {
+  const [newName, setNewName] = useState<string | null>();
+
+  return (
+    <div>
+      <input onChange={(event) => setNewName(event.target.value)} />
+      <button disabled={!newName} onClick={() => addNew(newName!)}>
+        Add new +
+      </button>
     </div>
   );
 };
@@ -42,6 +54,10 @@ function App({
     });
   };
 
+  const addNew = (name: string) => {
+    updateParam(name, "");
+  };
+
   const updateURL = () => {
     const { host, ...queryParams } = state;
     const myUrlWithParams = new URL(host);
@@ -62,7 +78,10 @@ function App({
           onChange={(value) => updateParam(key, value)}
         />
       ))}
-      <button onClick={updateURL}>Go to new URL</button>
+      <NewParam addNew={addNew} />
+      <div>
+        <button onClick={updateURL}>Go to new URL</button>
+      </div>
     </div>
   );
 }
