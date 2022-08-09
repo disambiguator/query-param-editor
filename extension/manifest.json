@@ -1,0 +1,18 @@
+{
+  "name": "/? Query Editor",
+  "description": "Form view for the current tab's query parameters.",
+  "version": "0.0.0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "180": "icon180.png",
+    "192": "icon192.png",
+    "128": "icon128.png",
+    "512": "icon512.png"
+  },
+  "permissions": ["tabs"]
+}
