@@ -11,8 +11,8 @@ const Section = ({
   onChange: (value: string) => void;
 }) => {
   return (
-    <div>
-      <label>{name}</label>
+    <div className="section">
+      <label className="label">{name}</label>
       <input
         defaultValue={value}
         onChange={(event) => onChange(event.target.value)}
@@ -25,10 +25,17 @@ const NewParam = ({ addNew }: { addNew: (n: string) => void }) => {
   const [newName, setNewName] = useState<string | null>();
 
   return (
-    <div>
-      <input onChange={(event) => setNewName(event.target.value)} />
-      <button disabled={!newName} onClick={() => addNew(newName!)}>
-        Add new +
+    <div className="new-param">
+      <input
+        className="new-param-input"
+        placeholder="New Parameter"
+        onChange={(event) => setNewName(event.target.value)}
+      />
+      <button
+        className={newName ? "" : "hidden"}
+        onClick={() => addNew(newName!)}
+      >
+        Add
       </button>
     </div>
   );
@@ -80,7 +87,7 @@ function App({
       ))}
       <NewParam addNew={addNew} />
       <div>
-        <button onClick={updateURL}>Go to new URL</button>
+        <button onClick={updateURL}>Go to page</button>
       </div>
     </div>
   );
