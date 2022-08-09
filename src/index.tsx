@@ -5,9 +5,8 @@ import App from "./App";
 
 let queryOptions = { active: true, lastFocusedWindow: true };
 async function getCurrentTabUrl() {
-  // @ts-expect-error - chrome is not defined
   let [tab] = await chrome.tabs.query(queryOptions);
-  return new URL(tab.url);
+  return new URL(tab.url!);
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
@@ -17,8 +16,7 @@ const navigateDev = (newPath: string) => {
 };
 
 const navigateProd = (newPath: string) => {
-  // @ts-expect-error - chrome is not defined
-  chrome.tabs.update(undefined, { url: newPath });
+  chrome.tabs.update({ url: newPath });
 };
 
 const mountApp = async () => {
